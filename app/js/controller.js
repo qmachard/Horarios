@@ -52,14 +52,24 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 		// Load API
 		$scope.stations.forEach(function(station) {
 			$http.get('https://open.tan.fr/ewp/tempsattente.json/'+station.code).success(function(data) {
-				console.log()
+				station.times = parseTimes(data);
 			});
 		});
 
-
-		$scope.stations[0].times[0] = '0 mn';
 		isUpdating = false;
 	};
 
-	//setInterval($scope.updateTimestable, 10000);
+	var parseTimes = function(data) {
+		var times = [];
+		for(var i=0; i < data.length; i++) {
+			times[i] = {
+				time: data[i].temps,
+				infotrafic: data[i].infotrafic
+			};
+		}
+
+		return times;
+	};
+
+	setInterval($scope.updateTimestable, 60000);
 });
