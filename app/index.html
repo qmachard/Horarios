@@ -32,8 +32,8 @@
 					<div class="station-infos_name">{{station.name}}</div>
 					<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
 				</div>
-				<ul class="station-timetables">
-					<li class="station-timetables_item" ng-repeat="time in station.times">{{time}}</li>
+				<ul class="timetables">
+					<li class="timetables-item" ng-repeat="time in station.times" ng-class="{infotrafic:time.infotrafic}">{{time.time}}</li>
 				</ul>
 			</div>
 		</main>
