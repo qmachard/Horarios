@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="horariosApp">
-	<head lang="en">
+	<head lang="fr">
 		<meta charset="UTF-8">
 		<title>Horarios</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,33 @@
 		<script type="text/javascript" src="js/controller.js"></script>
 	</head>
 	<body ng-controller="StationsCtrl">
-		<p>Total number of stations: {{stations.length}}</p>
-		<div class="station" ng-repeat="station in stations">
-			<div class="arret-infos">
-				<div class="arret-infos_name">{{station.name}}</div>
-				<div class="arret-infos_ligne">{{station.line}} → {{station.terminus}}</div>
+		<header class="header">
+			<div class="header-content">
+				<div class="header-section header-section--left">
+					<a href="#" ng-click="updateTimestable(true)">
+						<img src="./img/icon-refresh.svg" alt="Refresh" id="refresh" class="ico-refresh" />
+					</a>
+				</div>
+				<div class="header-section header-section--middle">
+					<img src="./img/logo-tan.svg" alt="Tan" class="logo-tan" />
+				</div>
+				<div class="header-section header-section--right">
+					<a href="#" target="_blank">
+						<img src="./img/icon-infotrafic.svg" alt="Infos Trafic" class="ico-infotrafic"/>
+					</a>
+				</div>
 			</div>
-		</div>
+		</header>
+		<main class="main">
+			<div class="station" ng-repeat="station in stations">
+				<div class="station-infos">
+					<div class="station-infos_name">{{station.name}}</div>
+					<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
+				</div>
+				<ul class="station-timetables">
+					<li class="station-timetables_item" ng-repeat="time in station.times">{{time}}</li>
+				</ul>
+			</div>
+		</main>
 	</body>
 </html>
