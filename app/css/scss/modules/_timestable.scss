@@ -5,8 +5,19 @@
 	border-top:1px solid darken($color-grey-light, 10);
 	padding:10px;
 	font-size: 0;
+
+	&.loading {
+		background-image:url($path-img + 'loader.gif');
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: 110px 10px;
+
+		.timestable-item {
+			display:none;
+		}
+	}
 }
-.timetables-item {
+.timestable-item {
 	display:inline-block;
 	padding:5px 7px;
 	border:1px solid lighten($color-grey, 30);
@@ -15,7 +26,6 @@
 	margin:5px;
 
 	&.infotrafic {
-//		border:1px solid $color-infotrafic;
 		color:$color-infotrafic;
 	}
 }

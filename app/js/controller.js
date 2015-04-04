@@ -8,7 +8,8 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 			line: 'C7',
 			terminus: 'Souillarderie',
 			times: [],
-			updating: false
+			updating: false,
+			error: false
 		},
 		{
 			code: 'VISO1',
@@ -16,7 +17,8 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 			line: '12',
 			terminus: 'Jules Vernes',
 			times: [],
-			updating: false
+			updating: false,
+			error: false
 		}
 	];
 
@@ -25,10 +27,16 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 		$scope.stations.forEach(function(station) {
 			if(station.updating) return; // If station is already updating, exit.
 			station.updating = true;
+			station.error = false;
 
-			$http.get('https://open.tan.fr/ewp/tempsattente.json/'+station.code).success(function(data) {
+			var http = $http.get('https://open.tan.fr/ewp/tempsattente.json/'+station.code);
+			http.success(function(data) {
 				station.times = parseTimes(data);
 				station.updating = false;
+			});
+			http.error(function() {
+				station.updating = false;
+				station.error = true;
 			});
 		});
 	};
