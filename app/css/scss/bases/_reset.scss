@@ -3,6 +3,11 @@ html, body {
 	padding:0;
 }
 
+body {
+	font-family: $font-base;
+	background: $color-bg;
+}
+
 * {
 	box-sizing:border-box;
 }

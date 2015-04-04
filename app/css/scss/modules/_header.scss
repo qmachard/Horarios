@@ -19,16 +19,15 @@
 	display:table;
 	height:50px;
 	width: 100%;
-
-	& > div {
-		display:table-cell;
-		vertical-align: middle;
-		height:50px;
-		text-align: center;
-	}
 }
+.header-section {
+	display:table-cell;
+	vertical-align: middle;
+	height:50px;
+	text-align: center;
 
-.header-left,
-.header-right {
-	width:50px;
+	&.header-section--left,
+	&.header-section--right {
+		width: 50px;
+	}
 }
