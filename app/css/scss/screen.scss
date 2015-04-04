@@ -1,1 +1,9 @@
 @import 'config/config';
+
+@import 'mixins/functions';
+
+@import 'bases/reset';
+@import 'bases/fonts';
+
+
+@import 'modules/header';

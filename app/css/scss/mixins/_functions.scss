@@ -1,0 +1,15 @@
+// Font face helper
+// Attention /!\ nom des fichiers = nom de la font
+@mixin ho-font-face ($font-family, $name, $weight: normal, $style: normal) {
+	$file-path: $path-font + $name;
+	@font-face {
+		font-family: $font-family;
+		font-weight: $weight;
+		font-style: $style;
+		src: url('#{$file-path}.eot'); /* IE9 Compat Modes */
+		src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('#{$file-path}.woff') format('woff'), /* Modern Browsers */
+		url('#{$file-path}.ttf') format('truetype'), /* Safari, Android, iOS */
+		url('#{$file-path}.svg##{$font-family}') format('svg'); /* Legacy iOS */
+	}
+}
