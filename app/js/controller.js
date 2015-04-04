@@ -1,11 +1,6 @@
 var horariosApp = angular.module('horariosApp', []);
 
 horariosApp.controller('StationsCtrl', function($scope, $http) {
-	$http.get('todo.php').success(function(data) {
-
-	});
-
-
 	$scope.stations = [
 		{
 			code: 'BCHE2',
@@ -13,9 +8,18 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 			line: 'C7',
 			terminus: 'Souillarderie',
 			times: [
-				'Proche',
-				'2 mn',
-				'13 mn'
+				{
+					time:'Proche',
+					infotrafic: false
+				},
+				{
+					time:'2 mn',
+					infotrafic: true
+				},
+				{
+					time:'13 mn',
+					infotrafic: false
+				}
 			]
 		},
 		{
@@ -24,9 +28,14 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 			line: '12',
 			terminus: 'Jules Vernes',
 			times: [
-				'Proche',
-				'4 mn',
-				'25 mn'
+				{
+					time:'16 mn',
+					infotrafic: false
+				},
+				{
+					time:'24 mn',
+					infotrafic: false
+				}
 			]
 		}
 	];
@@ -40,9 +49,17 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 		// If must be a loader
 		haveLoader = (typeof haveLoader === 'undefined') ? false : haveLoader;
 
+		// Load API
+		$scope.stations.forEach(function(station) {
+			$http.get('https://open.tan.fr/ewp/tempsattente.json/'+station.code).success(function(data) {
+				console.log()
+			});
+		});
+
+
 		$scope.stations[0].times[0] = '0 mn';
 		isUpdating = false;
 	};
 
-	setInterval($scope.updateTimestable, 10000);
+	//setInterval($scope.updateTimestable, 10000);
 });
