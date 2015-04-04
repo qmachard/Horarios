@@ -17,21 +17,3 @@
 	font-size: 14px;
 	font-weight: bold;
 }
-
-.station-timetables {
-	display:block;
-	list-style: none;
-	background: $color-grey-light;
-	border-top:1px solid darken($color-grey-light, 10);
-	padding:10px;
-	font-size: 0;
-}
-
-.station-timetables_item {
-	display:inline-block;
-	padding:5px 7px;
-	border:1px solid darken($color-grey-light, 10);
-	color: $color-grey;
-	font-size: 12px;
-	margin:5px;
-}
