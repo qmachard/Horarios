@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="horariosApp">
 	<head lang="en">
 		<meta charset="UTF-8">
 		<title>Horarios</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="./css/screen.css" />
 		<script type="text/javascript" src="js/libs/angular.min.js"></script>
+		<script type="text/javascript" src="js/controller.js"></script>
 	</head>
-	<body ng-controller="stationsCtrl">
-		<div class="station" ng-repeat="phone in phones">
-
+	<body ng-controller="StationsCtrl">
+		<p>Total number of stations: {{stations.length}}</p>
+		<div class="station" ng-repeat="station in stations">
+			<div class="arret-infos">
+				<div class="arret-infos_name">{{station.name}}</div>
+				<div class="arret-infos_ligne">{{station.line}} → {{station.terminus}}</div>
+			</div>
 		</div>
 	</body>
 </html>
