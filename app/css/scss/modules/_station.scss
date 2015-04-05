@@ -17,3 +17,14 @@
 	font-size: 14px;
 	font-weight: bold;
 }
+.station-infos_error {
+	display:none;
+	font-size: 10px;
+	color:red;
+	text-align: center;
+	text-transform: none;
+
+	&.show {
+		display:block;
+	}
+}

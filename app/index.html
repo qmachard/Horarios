@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html ng-app="horariosApp">
+<html ng-app="horariosApp"  manifest="horarios.manifest">
 	<head lang="fr">
 		<meta charset="UTF-8">
 		<title>Horarios</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="apple-touch-icon" href="./img/icon-iphone.png" />
+		<link rel="icon" href="./img/icon-iphone.png" />
 		<link rel="stylesheet" href="./css/screen.css" />
 		<script type="text/javascript" src="js/libs/angular.min.js"></script>
 		<script type="text/javascript" src="js/controller.js"></script>
@@ -31,6 +35,7 @@
 				<div class="station-infos">
 					<div class="station-infos_name">{{station.name}}</div>
 					<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
+					<div class="station-infos_error" ng-class="{show:station.error}">{{station.error}}</div>
 				</div>
 				<ul class="timestable" ng-class="{loading:station.updating, error:station.error}">
 					<li class="timestable-item" ng-repeat="time in station.times" ng-class="{infotrafic:time.infotrafic}">{{time.time}}</li>

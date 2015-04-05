@@ -1,0 +1,33 @@
+CACHE MANIFEST
+
+# Version 1.2
+
+CACHE:
+index.html
+css/screen.css
+fonts/OpenSans-Bold-webfont.eot
+fonts/OpenSans-Bold-webfont.svg
+fonts/OpenSans-Bold-webfont.ttf
+fonts/OpenSans-Bold-webfont.woff
+fonts/OpenSans-Light-webfont.eot
+fonts/OpenSans-Light-webfont.svg
+fonts/OpenSans-Light-webfont.ttf
+fonts/OpenSans-Light-webfont.woff
+fonts/OpenSans-Regular-webfont.eot
+fonts/OpenSans-Regular-webfont.svg
+fonts/OpenSans-Regular-webfont.ttf
+fonts/OpenSans-Regular-webfont.woff
+img/icon-infotrafic.svg
+img/icon-iphone.png
+img/icon-plus.svg
+img/icon-refresh.svg
+img/loader.gif
+img/logo-tan.svg
+js/libs/angular.min.js
+js/controller.js
+
+FALLBACK:
+/app/ /app/index.html
+
+NETWORK:
+*
