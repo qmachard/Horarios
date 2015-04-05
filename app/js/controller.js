@@ -1,26 +1,11 @@
 var horariosApp = angular.module('horariosApp', []);
 
 horariosApp.controller('StationsCtrl', function($scope, $http) {
-	$scope.stations = [
-		{
-			code: 'BCHE2',
-			name:'Basse-Chenaie',
-			line: 'C7',
-			terminus: 'Souillarderie',
-			times: [],
-			updating: false,
-			error: false
-		},
-		{
-			code: 'VISO1',
-			name:'Vison',
-			line: '12',
-			terminus: 'Jules Vernes',
-			times: [],
-			updating: false,
-			error: false
-		}
-	];
+	$scope.stations = [];
+
+	if(localStorage && localStorage.getItem('stations') != null) {
+		$scope.stations = JSON.parse(localStorage.getItem('stations'));
+	}
 
 	$scope.updateTimestable = function() {
 		// Load API
