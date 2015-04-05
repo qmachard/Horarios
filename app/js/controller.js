@@ -36,7 +36,7 @@ horariosApp.controller('StationsCtrl', function($scope, $http) {
 			});
 			http.error(function() {
 				station.updating = false;
-				station.error = "Impossible de se connecter à internet. Les horaires ne sont pas à jour.";
+				station.error = "Impossible de se connecter à internet.";
 			});
 		});
 	};
