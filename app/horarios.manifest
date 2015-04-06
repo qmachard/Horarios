@@ -28,7 +28,7 @@ img/logo-tan.svg
 ../bower_components/angular-route/angular-route.min.js
 
 FALLBACK:
-./ ./index.html
+/quentinmachard/tan2/app/ /quentinmachard/tan2/app/index.html
 
 NETWORK:
 *
