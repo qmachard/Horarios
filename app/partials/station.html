@@ -1,7 +1,7 @@
 <header class="header">
 	<div class="header-content">
 		<div class="header-section header-section--left">
-			<a href="#/timestable">
+			<a href="#/stations">
 				<img width="25" src="./img/icon-left.svg" alt="Retour" />
 			</a>
 		</div>
@@ -12,7 +12,9 @@
 	</div>
 </header>
 <main class="main">
-	<ul class="station-lines">
-		<li class="station-lines_line" ng-repeat="line in lines">{{line.name}}</li>
-	</ul>
+	<div class="station" ng-repeat="line in lines">
+		<div class="station-infos">
+			<div class="station-infos_ligne">{{line.line}} → {{line.terminus}}</div>
+		</div>
+	</div>
 </main>
