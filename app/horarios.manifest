@@ -28,7 +28,7 @@ img/logo-tan.svg
 ../bower_components/angular-route/angular-route.min.js
 
 FALLBACK:
-/app/ /app/index.html
+./ ./index.html
 
 NETWORK:
 *
