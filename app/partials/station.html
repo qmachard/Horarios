@@ -12,9 +12,7 @@
 	</div>
 </header>
 <main class="main">
-	<div class="station" ng-repeat="station in stations">
-		<div class="station-infos">
-			<a href="#/station/{{station.code}}" class="station-infos_name">{{station.name}}</a>
-		</div>
-	</div>
+	<ul class="station-lines">
+		<li class="station-lines_line" ng-repeat="line in lines">{{line.name}}</li>
+	</ul>
 </main>

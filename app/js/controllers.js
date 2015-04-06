@@ -46,3 +46,36 @@ phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 	setInterval($scope.updateTimestable, 60000);
 	$scope.updateTimestable();
 });
+
+phonecatControllers.controller('StationsCtrl', function($scope, $http) {
+	$scope.stations = [];
+
+	var http = $http.get('https://open.tan.fr/ewp/arrets.json');
+	http.success(function(data) {
+		for(var i=0; i<data.length; i++) {
+			$scope.stations[i] = {
+				code: data[i].codeLieu,
+				name: data[i].libelle
+			};
+		}
+	});
+	http.error(function() {
+		console.error('Error');
+	});
+});
+
+phonecatControllers.controller('StationLinesCtrl', function($scope, $http, $routeParams) {
+	$scope.lines = [];
+
+	var http = $http.get('https://open.tan.fr/ewp/tempsattente.json/'+$routeParams.code);
+	http.success(function(data) {
+		console.log(data);
+		for(var i=0; i<data.length; i++) {
+			$scope.lines[i] = {
+				code: data[i].codeLieu,
+				name: data[i].terminus
+			};
+		}
+	});
+	http.error(function() {});
+});

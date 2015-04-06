@@ -15,13 +15,15 @@
 		</div>
 	</div>
 </header>
-<div class="station" ng-repeat="station in stations">
-	<div class="station-infos">
-		<div class="station-infos_name">{{station.name}}</div>
-		<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
-		<div class="station-infos_error" ng-class="{show:station.error}">{{station.error}}</div>
+<main class="main">
+	<div class="station" ng-repeat="station in stations">
+		<div class="station-infos">
+			<div class="station-infos_name">{{station.name}}</div>
+			<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
+			<div class="station-infos_error" ng-class="{show:station.error}">{{station.error}}</div>
+		</div>
+		<ul class="timestable" ng-class="{loading:station.updating, error:station.error}">
+			<li class="timestable-item" ng-repeat="time in station.times" ng-class="{infotrafic:time.infotrafic}">{{time.time}}</li>
+		</ul>
 	</div>
-	<ul class="timestable" ng-class="{loading:station.updating, error:station.error}">
-		<li class="timestable-item" ng-repeat="time in station.times" ng-class="{infotrafic:time.infotrafic}">{{time.time}}</li>
-	</ul>
-</div>
+</main>

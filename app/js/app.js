@@ -14,6 +14,10 @@ horariosApp.config(['$routeProvider',
 				templateUrl: 'partials/stations.html',
 				controller: 'StationsCtrl'
 			})
+			.when('/station/:code', {
+				templateUrl: 'partials/station.html',
+				controller: 'StationLinesCtrl'
+			})
 			.otherwise({
 				redirectTo: '/timestable'
 			});
