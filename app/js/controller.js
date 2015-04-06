@@ -19,6 +19,10 @@ horariosApp.controller('TimestableCtrl', function($scope, $http) {
 			http.success(function(data) {
 				station.times = parseTimes(data);
 				station.updating = false;
+
+				if(station.times.length == 0) {
+					station.error = "Il n'y a plus de passage";
+				}
 			});
 			http.error(function() {
 				station.updating = false;
