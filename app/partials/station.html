@@ -13,7 +13,7 @@
 </header>
 <main class="main">
 	<div class="station" ng-repeat="line in lines">
-		<div class="station-infos">
+		<div class="station-infos" ng-click="addStation({{line.code}})">
 			<div class="station-infos_ligne">{{line.line}} → {{line.terminus}}</div>
 		</div>
 	</div>

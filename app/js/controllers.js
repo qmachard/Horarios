@@ -72,10 +72,15 @@ phonecatControllers.controller('StationLinesCtrl', function($scope, $http, $rout
 		console.log(data);
 		for(var i=0; i<data.length; i++) {
 			$scope.lines[i] = {
-				code: data[i].codeLieu,
-				name: data[i].terminus
+				code: data[i].arret.codeArret,
+				line: data[i].ligne.numLigne,
+				terminus: data[i].terminus
 			};
 		}
 	});
 	http.error(function() {});
+
+	function addStation(code) {
+		console.log(code);
+	}
 });
