@@ -1,0 +1,12 @@
+{
+	"version": "0.0.1",
+	"name": "horarios",
+	"description": "Horarios for your travels",
+	"repository": "https://github.com/qmachard/horarios",
+	"private": false,
+	"dependencies": {
+		"angular": "1.3.x",
+		"angular-mocks": "1.3.x",
+		"angular-route": "1.3.x"
+	}
+}

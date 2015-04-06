@@ -1,5 +1,3 @@
-var horariosApp = angular.module('horariosApp', []);
-
 horariosApp.controller('TimestableCtrl', function($scope, $http) {
 	$scope.stations = [];
 
