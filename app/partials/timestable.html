@@ -1,0 +1,27 @@
+<header class="header">
+	<div class="header-content">
+		<div class="header-section header-section--left">
+			<span ng-click="updateTimestable(true)">
+				<img src="./img/icon-refresh.svg" alt="Refresh" id="refresh" class="ico-refresh"/>
+			</span>
+		</div>
+		<div class="header-section header-section--middle">
+			<img src="./img/logo-tan.svg" alt="Tan" class="logo-tan"/>
+		</div>
+		<div class="header-section header-section--right">
+			<a href="#/stations">
+				<img src="./img/icon-plus.svg" alt="Infos Trafic" width="27" />
+			</a>
+		</div>
+	</div>
+</header>
+<div class="station" ng-repeat="station in stations">
+	<div class="station-infos">
+		<div class="station-infos_name">{{station.name}}</div>
+		<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
+		<div class="station-infos_error" ng-class="{show:station.error}">{{station.error}}</div>
+	</div>
+	<ul class="timestable" ng-class="{loading:station.updating, error:station.error}">
+		<li class="timestable-item" ng-repeat="time in station.times" ng-class="{infotrafic:time.infotrafic}">{{time.time}}</li>
+	</ul>
+</div>

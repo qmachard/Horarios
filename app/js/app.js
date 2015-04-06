@@ -1,17 +1,20 @@
-var horariosApp = angular.module('horariosApp', ['ngRoute']);
+var horariosApp = angular.module('horariosApp', [
+	'ngRoute',
+	'phonecatControllers'
+]);
 
 horariosApp.config(['$routeProvider',
 	function($routeProvider) {
-		$routeProvider.
-			when('/timestable', {
-				templateUrl: 'partials/phone-list.html',
+		$routeProvider
+			.when('/timestable', {
+				templateUrl: 'partials/timestable.html',
 				controller: 'TimestableCtrl'
-			}).
-			when('/stations', {
-				templateUrl: 'partials/phone-detail.html',
-				controller: 'PhoneDetailCtrl'
-			}).
-			otherwise({
+			})
+			.when('/stations', {
+				templateUrl: 'partials/stations.html',
+				controller: 'StationsCtrl'
+			})
+			.otherwise({
 				redirectTo: '/timestable'
 			});
 	}

@@ -15,35 +15,7 @@
 		<script type="text/javascript" src="js/app.js"></script>
 		<script type="text/javascript" src="js/controllers.js"></script>
 	</head>
-	<body ng-controller="TimestableCtrl">
-		<header class="header">
-			<div class="header-content">
-				<div class="header-section header-section--left">
-					<a href="#" ng-click="updateTimestable(true)">
-						<img src="./img/icon-refresh.svg" alt="Refresh" id="refresh" class="ico-refresh" />
-					</a>
-				</div>
-				<div class="header-section header-section--middle">
-					<img src="./img/logo-tan.svg" alt="Tan" class="logo-tan" />
-				</div>
-				<div class="header-section header-section--right">
-					<a href="#" target="_blank">
-						<img src="./img/icon-infotrafic.svg" alt="Infos Trafic" class="ico-infotrafic"/>
-					</a>
-				</div>
-			</div>
-		</header>
-		<main class="main">
-			<div class="station" ng-repeat="station in stations">
-				<div class="station-infos">
-					<div class="station-infos_name">{{station.name}}</div>
-					<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>
-					<div class="station-infos_error" ng-class="{show:station.error}">{{station.error}}</div>
-				</div>
-				<ul class="timestable" ng-class="{loading:station.updating, error:station.error}">
-					<li class="timestable-item" ng-repeat="time in station.times" ng-class="{infotrafic:time.infotrafic}">{{time.time}}</li>
-				</ul>
-			</div>
-		</main>
+	<body>
+		<main class="main" ng-view></main>
 	</body>
 </html>

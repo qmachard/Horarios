@@ -1,4 +1,6 @@
-horariosApp.controller('TimestableCtrl', function($scope, $http) {
+var phonecatControllers = angular.module('phonecatControllers', []);
+
+phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 	$scope.stations = [];
 
 	if(!(localStorage && localStorage.getItem('stations') != null)) {
