@@ -47,46 +47,79 @@ phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 	$scope.updateTimestable();
 });
 
+var stations = null;
+
+var loadStations = function(callback, $scope, $http) {
+	if(stations == null) {
+		var http = $http.get('https://open.tan.fr/ewp/arrets.json');
+		http.success(function(data) {
+			stations = data;
+
+			$scope.loading = false;
+			$scope.error = false;
+
+			console.log(data);
+
+			callback(data, $scope);
+		});
+		http.error(function() {
+			$scope.loading = false;
+			$scope.error = true;
+		});
+	} else {
+		$scope.loading = false;
+		callback(stations, $scope);
+	}
+};
+
 phonecatControllers.controller('StationsCtrl', function($scope, $http) {
 	$scope.stations = [];
 
 	$scope.loading = true;
 	$scope.error = false;
 
-	var http = $http.get('https://open.tan.fr/ewp/arrets.json');
-	http.success(function(data) {
-		//for(var i=0; i<data.length; i++) {
-		//	$scope.stations[i] = {
-		//		code: data[i].codeLieu,
-		//		name: data[i].libelle
-		//	};
-		//}
-		//$scope.loading = false;
-	});
-	http.error(function() {
-		$scope.loading = false;
-		$scope.error = true;
-	});
+	loadStations(function(data, $scope) {
+		for(var i=0; i<stations.length; i++) {
+			$scope.stations[i] = {
+				code: data[i].codeLieu,
+				name: data[i].libelle,
+				lines: []
+			};
+
+			for(var j=0; j<data[i].ligne.length; j++) {
+				$scope.stations[i].lines[j] = {
+					line: data[i].ligne[j].numLigne
+				};
+			}
+		}
+		console.log($scope.stations);
+	}, $scope, $http);
 });
 
 phonecatControllers.controller('StationLinesCtrl', function($scope, $http, $routeParams) {
-	$scope.station = {
-		name:$routeParams.name
-	};
-	$scope.lines = [];
+	$scope.loading = true;
+	$scope.error = false;
+	$scope.directions = [];
 
-	var http = $http.get('https://open.tan.fr/ewp/tempsattente.json/'+$routeParams.code);
+	var http = $http.get('https://open.tan.fr/ewp/horairesarret.json/'+$routeParams.station+'/'+$routeParams.line+'/2');
 	http.success(function(data) {
 		console.log(data);
-		for(var i=0; i<data.length; i++) {
-			$scope.lines[i] = {
-				code: data[i].arret.codeArret,
-				line: data[i].ligne.numLigne,
-				terminus: data[i].terminus
-			};
-		}
+		$scope.directions[1] = {
+			code:$routeParams.station+1,
+			name:data.line.directionSens1
+		};
+		$scope.directions[2] = {
+			code:$routeParams.station+2,
+			name:data.line.directionSens2
+		};
+
+		$scope.loading = false;
+		$scope.error = false;
 	});
-	http.error(function() {});
+	http.error(function() {
+		$scope.loading = false;
+		$scope.error = "Vous n'êtes pas connectés à internet";
+	});
 
 	function addStation(code) {
 		console.log(code);

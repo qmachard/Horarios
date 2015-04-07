@@ -17,7 +17,12 @@
 	</div>
 	<div class="station" ng-repeat="station in stations | filter:query">
 		<div class="station-infos">
-			<a href="#/station/{{station.name}}/{{station.code}}" class="station-infos_name">{{station.name}}</a>
+			<div class="station-infos_name">{{station.name}}</div>
 		</div>
+		<ul class="lines">
+			<li class="lines-item" ng-repeat="line in station.lines">
+				<a href="#/station/{{station.code}}/{{line.line}}">{{line.line}}</a>
+			</li>
+		</ul>
 	</div>
 </main>

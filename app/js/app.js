@@ -14,8 +14,8 @@ horariosApp.config(['$routeProvider',
 				templateUrl: 'partials/stations.html',
 				controller: 'StationsCtrl'
 			})
-			.when('/station/:name/:code', {
-				templateUrl: 'partials/station.html',
+			.when('/station/:station/:line', {
+				templateUrl: 'partials/lines.html',
 				controller: 'StationLinesCtrl'
 			})
 			.otherwise({

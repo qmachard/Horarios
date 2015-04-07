@@ -11,9 +11,9 @@
 		<div class="header-section header-section--right"></div>
 	</div>
 </header>
-<main class="main">
+<main class="main" ng-class="{loading:loading}">
 	<div class="title">{{station.name}}</div>
-	<div class="station" ng-repeat="line in lines">
+	<div class="station" ng-repeat="line in lines | groupBy:'code'">
 		<div class="station-infos" ng-click="addStation({{line.code}})">
 			<div class="station-infos_ligne">{{line.line}} → {{line.terminus}}</div>
 		</div>
