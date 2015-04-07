@@ -50,18 +50,22 @@ phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 phonecatControllers.controller('StationsCtrl', function($scope, $http) {
 	$scope.stations = [];
 
+	$scope.loading = true;
+	$scope.error = false;
+
 	var http = $http.get('https://open.tan.fr/ewp/arrets.json');
 	http.success(function(data) {
-		console.log(data);
-		for(var i=0; i<data.length; i++) {
-			$scope.stations[i] = {
-				code: data[i].codeLieu,
-				name: data[i].libelle
-			};
-		}
+		//for(var i=0; i<data.length; i++) {
+		//	$scope.stations[i] = {
+		//		code: data[i].codeLieu,
+		//		name: data[i].libelle
+		//	};
+		//}
+		//$scope.loading = false;
 	});
 	http.error(function() {
-		console.error('Error');
+		$scope.loading = false;
+		$scope.error = true;
 	});
 });
 

@@ -1,8 +1,14 @@
 .main {
 	margin:50px 0 10px 0;
 	padding:10px 10px;
+	min-height:30px;
 
 	.webapp & {
 		margin-top:70px;
+	}
+
+	&.loading {
+		background:url($path-img + 'loader-2.gif') no-repeat center 10px;
+		background-size:110px 10px;
 	}
 }

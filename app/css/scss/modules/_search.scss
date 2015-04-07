@@ -1,16 +1,26 @@
 .search {
 	display:block;
-	padding:10px;
-	border-bottom:1px solid $color-grey-light;
-	background:$color-white;
 	margin-bottom:10px;
 }
 
 .search-input {
 	display: block;
 	width: 100%;
-	line-height: 20px;
 	font-size: 15px;
 	padding:10px;
-	border:1px solid $color-grey-light;
+	border:1px solid darken($color-bg, 10);
+	background:transparent;
+	font-weight: 100;
+	text-align: center;
+
+	@include transition(all .2s 0);
+
+	&:focus {
+		background:$color-white;
+		outline:none;
+	}
+
+	.loading & {
+		display:none;
+	}
 }
