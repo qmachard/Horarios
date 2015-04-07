@@ -11,8 +11,10 @@
 		<div class="header-section header-section--right"></div>
 	</div>
 </header>
-<main class="main">
-	Search: <input ng-model="query">
+<main class="main" ng-class="{loading:stations.loading}">
+	<div class="search">
+		<input class="search-input" ng-model="query">
+	</div>
 	<div class="station" ng-repeat="station in stations | filter:query">
 		<div class="station-infos">
 			<a href="#/station/{{station.name}}/{{station.code}}" class="station-infos_name">{{station.name}}</a>

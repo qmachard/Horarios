@@ -1,0 +1,16 @@
+.search {
+	display:block;
+	padding:10px;
+	border-bottom:1px solid $color-grey-light;
+	background:$color-white;
+	margin-bottom:10px;
+}
+
+.search-input {
+	display: block;
+	width: 100%;
+	line-height: 20px;
+	font-size: 15px;
+	padding:10px;
+	border:1px solid $color-grey-light;
+}
