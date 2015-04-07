@@ -12,9 +12,10 @@
 	</div>
 </header>
 <main class="main">
-	<div class="station" ng-repeat="station in stations">
+	Search: <input ng-model="query">
+	<div class="station" ng-repeat="station in stations | filter:query">
 		<div class="station-infos">
-			<a href="#/station/{{station.code}}" class="station-infos_name">{{station.name}}</a>
+			<a href="#/station/{{station.name}}/{{station.code}}" class="station-infos_name">{{station.name}}</a>
 		</div>
 	</div>
 </main>

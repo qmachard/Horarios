@@ -52,6 +52,7 @@ phonecatControllers.controller('StationsCtrl', function($scope, $http) {
 
 	var http = $http.get('https://open.tan.fr/ewp/arrets.json');
 	http.success(function(data) {
+		console.log(data);
 		for(var i=0; i<data.length; i++) {
 			$scope.stations[i] = {
 				code: data[i].codeLieu,
@@ -65,6 +66,9 @@ phonecatControllers.controller('StationsCtrl', function($scope, $http) {
 });
 
 phonecatControllers.controller('StationLinesCtrl', function($scope, $http, $routeParams) {
+	$scope.station = {
+		name:$routeParams.name
+	};
 	$scope.lines = [];
 
 	var http = $http.get('https://open.tan.fr/ewp/tempsattente.json/'+$routeParams.code);
