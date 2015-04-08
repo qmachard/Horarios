@@ -12,10 +12,9 @@
 	</div>
 </header>
 <main class="main" ng-class="{loading:loading}">
-	<div class="title">{{station.name}}</div>
-	<div class="station" ng-repeat="line in lines | groupBy:'code'">
-		<div class="station-infos" ng-click="addStation({{line.code}})">
-			<div class="station-infos_ligne">{{line.line}} → {{line.terminus}}</div>
+	<div class="station" ng-repeat="direction in line.directions">
+		<div class="station-infos" ng-click="addStation()">
+			<div class="station-infos_ligne">{{line.line}} → {{direction.name}}</div>
 		</div>
 	</div>
 </main>

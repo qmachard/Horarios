@@ -19,9 +19,9 @@
 		<div class="station-infos">
 			<div class="station-infos_name">{{station.name}}</div>
 		</div>
-		<ul class="lines">
-			<li class="lines-item" ng-repeat="line in station.lines">
-				<a href="#/station/{{station.code}}/{{line.line}}">{{line.line}}</a>
+		<ul class="timestable">
+			<li class="timestable-item" ng-repeat="line in station.lines">
+				<a href="#/station/{{station.code}}/{{line.line}}">Ligne {{line.line}}</a>
 			</li>
 		</ul>
 	</div>

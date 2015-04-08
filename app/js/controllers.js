@@ -1,12 +1,61 @@
 var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
-	$scope.stations = [];
+var stations = null;
 
-	if(!(localStorage && localStorage.getItem('stations') != null)) {
-		localStorage.setItem('stations', '[{"code":"BCHE2","name":"Basse-Chenaie","line":"C7","terminus":"Souillarderie","times":[],"updating":false,"error":false},{"code":"VISO1","name":"Vison","line":"12","terminus":"Jules Vernes","times":[],"updating":false,"error":false}]')
+var getStationsStored = function() {
+	if(localStorage && localStorage.getItem('stations') != null) {
+		return JSON.parse(localStorage.getItem('stations'));
+	} else {
+		return [];
 	}
-	$scope.stations = JSON.parse(localStorage.getItem('stations'));
+};
+var setStationsStored = function(stations) {
+	localStorage.setItem('stations', JSON.stringify(stations));
+};
+
+var getStations = function(callback, $http) {
+	if(stations == null) {
+		var http = $http.get('https://open.tan.fr/ewp/arrets.json');
+		http.success(function(data) {
+			data.error = false;
+			stations = data; // On sauvegarde les stations pour la prochaine fois
+
+			callback(stations);
+		});
+		http.error(function() {
+			data.error = "Vous n'êtes pas connectés à internet";
+			callback(data)
+		});
+	} else {
+		callback(stations);
+	}
+};
+
+var getDirections = function(station, line, callback, $http) {
+	for(var direction=1; direction<=2; direction++) {
+		getDirection(station, line, direction, callback, $http);
+	}
+};
+var getDirection = function(station, line, direction, callback, $http) {
+	var http = $http.get('https://open.tan.fr/ewp/horairesarret.json/' + station + '/' + line + '/' + direction);
+	http.success(function(data) {
+		callback({
+			direction:direction,
+			code:data.arret.codeArret,
+			name:data.ligne['directionSens' + direction],
+			station:data.arret.libelle,
+			error: false
+		});
+	});
+	http.error(function() {
+		callback({
+			error: "Vous n'êtes pas connectés à internet"
+		});
+	});
+}
+
+phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
+	$scope.stations = getStationsStored();
 
 	$scope.updateTimestable = function() {
 		// Load API
@@ -47,81 +96,63 @@ phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 	$scope.updateTimestable();
 });
 
-var stations = null;
-
-var loadStations = function(callback, $scope, $http) {
-	if(stations == null) {
-		var http = $http.get('https://open.tan.fr/ewp/arrets.json');
-		http.success(function(data) {
-			stations = data;
-
-			$scope.loading = false;
-			$scope.error = false;
-
-			console.log(data);
-
-			callback(data, $scope);
-		});
-		http.error(function() {
-			$scope.loading = false;
-			$scope.error = true;
-		});
-	} else {
-		$scope.loading = false;
-		callback(stations, $scope);
-	}
-};
-
 phonecatControllers.controller('StationsCtrl', function($scope, $http) {
 	$scope.stations = [];
 
 	$scope.loading = true;
 	$scope.error = false;
 
-	loadStations(function(data, $scope) {
-		for(var i=0; i<stations.length; i++) {
-			$scope.stations[i] = {
-				code: data[i].codeLieu,
-				name: data[i].libelle,
-				lines: []
-			};
-
-			for(var j=0; j<data[i].ligne.length; j++) {
-				$scope.stations[i].lines[j] = {
-					line: data[i].ligne[j].numLigne
+	getStations(function(data) {
+		if(data.error === false) {
+			for(var i=0; i<stations.length; i++) {
+				$scope.stations[i] = {
+					code: data[i].codeLieu,
+					name: data[i].libelle,
+					lines: []
 				};
+
+				for(var j=0; j<data[i].ligne.length; j++) {
+					$scope.stations[i].lines[j] = {
+						line: data[i].ligne[j].numLigne
+					};
+				}
 			}
+		} else {
+			$scope.error = data.error;
 		}
-		console.log($scope.stations);
-	}, $scope, $http);
+		$scope.loading = false;
+
+	}, $http);
 });
 
 phonecatControllers.controller('StationLinesCtrl', function($scope, $http, $routeParams) {
 	$scope.loading = true;
 	$scope.error = false;
-	$scope.directions = [];
+	$scope.line = {
+		line: $routeParams.line,
+		directions: []
+	};
 
-	var http = $http.get('https://open.tan.fr/ewp/horairesarret.json/'+$routeParams.station+'/'+$routeParams.line+'/2');
-	http.success(function(data) {
-		console.log(data);
-		$scope.directions[1] = {
-			code:$routeParams.station+1,
-			name:data.line.directionSens1
-		};
-		$scope.directions[2] = {
-			code:$routeParams.station+2,
-			name:data.line.directionSens2
-		};
-
+	getDirections($routeParams.station, $routeParams.line, function(data) {
+		if(data.error === false) {
+			$scope.line.directions[data.direction-1] = data;
+			$scope.line.directions[data.direction-1].line = $routeParams.line;
+		} else {
+			$scope.error = data.error;
+		}
 		$scope.loading = false;
-		$scope.error = false;
-	});
-	http.error(function() {
-		$scope.loading = false;
-		$scope.error = "Vous n'êtes pas connectés à internet";
-	});
+	}, $http);
 
-	function addStation(code) {
-		console.log(code);
+	$scope.addStation = function() {
+		var stations_stored = getStationsStored();
+		stations_stored[stations_stored.length] = {
+			code: this.direction.code,
+			line: this.direction.line,
+			terminus: this.direction.name,
+			name: this.direction.station,
+			times: []
+		};
+		setStationsStored(stations_stored);
+		window.location.hash = '/timestable';
 	}
 });
