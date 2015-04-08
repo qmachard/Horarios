@@ -17,6 +17,7 @@
 </header>
 <main class="main">
 	<div class="station" ng-repeat="station in stations">
+		<img src="./img/icon-delete.svg" width="15" class="icon-delete" ng-click="removeStation()" />
 		<div class="station-infos">
 			<div class="station-infos_name">{{station.name}}</div>
 			<div class="station-infos_ligne">{{station.line}} → {{station.terminus}}</div>

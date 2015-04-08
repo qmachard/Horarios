@@ -28,4 +28,9 @@
 	&.infotrafic {
 		color:$color-infotrafic;
 	}
+
+	a {
+		color: $color-grey;
+		text-decoration: none;
+	}
 }

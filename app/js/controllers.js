@@ -23,8 +23,9 @@ var getStations = function(callback, $http) {
 			callback(stations);
 		});
 		http.error(function() {
-			data.error = "Vous n'êtes pas connectés à internet";
-			callback(data)
+			callback({
+				error: "Vous n'êtes pas connectés à internet"
+			});
 		});
 	} else {
 		callback(stations);
@@ -52,7 +53,7 @@ var getDirection = function(station, line, direction, callback, $http) {
 			error: "Vous n'êtes pas connectés à internet"
 		});
 	});
-}
+};
 
 phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 	$scope.stations = getStationsStored();
@@ -78,6 +79,18 @@ phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 				station.error = "Impossible de se connecter à internet.";
 			});
 		});
+	};
+
+	$scope.removeStation = function() {
+		if(confirm('Voulez-vous vraiment supprimer "'+this.station.name+'"'))
+		var stations_stored = getStationsStored();
+		var stations = [];
+		for(var i=0; i<stations_stored.length; i++) {
+			if(stations_stored[i].code != this.station.code)
+				stations[stations.length] = stations_stored[i];
+		}
+		setStationsStored(stations);
+		$scope.stations = stations;
 	};
 
 	var parseTimes = function(data) {
