@@ -17,11 +17,14 @@ fonts/OpenSans-Regular-webfont.eot
 fonts/OpenSans-Regular-webfont.svg
 fonts/OpenSans-Regular-webfont.ttf
 fonts/OpenSans-Regular-webfont.woff
+img/icon-delete.svg
 img/icon-infotrafic.svg
 img/icon-iphone.png
+img/icon-left.svg
 img/icon-plus.svg
 img/icon-refresh.svg
 img/loader.gif
+img/loader-2.gif
 img/logo-tan.svg
 js/app.js
 js/controllers.js
