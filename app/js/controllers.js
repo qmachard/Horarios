@@ -15,7 +15,7 @@ var setStationsStored = function(stations) {
 
 var getStations = function(callback, $http) {
 	if(stations == null) {
-		var http = $http.get('https://open.tan.fr/ewp/arrets.json');
+		var http = $http.get('./php/stations.php');
 		http.success(function(data) {
 			data.error = false;
 			stations = data; // On sauvegarde les stations pour la prochaine fois
@@ -38,7 +38,7 @@ var getDirections = function(station, line, callback, $http) {
 	}
 };
 var getDirection = function(station, line, direction, callback, $http) {
-	var http = $http.get('https://open.tan.fr/ewp/horairesarret.json/' + station + '/' + line + '/' + direction);
+	var http = $http.get('./php/directions.php?station=' + station + '&line=' + line + '&direction=' + direction);
 	http.success(function(data) {
 		callback({
 			direction:direction,
@@ -65,7 +65,7 @@ phonecatControllers.controller('TimestableCtrl', function($scope, $http) {
 			station.updating = true;
 			station.error = false;
 
-			var http = $http.get('https://open.tan.fr/ewp/tempsattente.json/'+station.code);
+			var http = $http.get('./php/times.php?station='+station.code);
 			http.success(function(data) {
 				station.times = parseTimes(data);
 				station.updating = false;

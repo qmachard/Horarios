@@ -9,6 +9,8 @@
 	background:$color-green;
 	border-bottom:1px solid darken($color-green, 10);
 
+	z-index: 1000;
+
 	.webapp & {
 		padding-top:20px;
 		height:70px;
