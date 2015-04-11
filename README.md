@@ -9,7 +9,7 @@ The application is, for now, based on the Tan's API (Nantes). Fork me, if you wh
 
 ### Requierements
 
-Horarios is based on AngularJS. It requires __NAME__ and __Compass__
+Horarios is based on __[AngularJS](https://angularjs.org/)__. It requires [__NPM__](https://www.npmjs.com/) and [__Compass__](http://compass-style.org/)
 
 ### Installation
 
