@@ -25,3 +25,6 @@ compass compile
 ```
 
 Vous pouvez alors lancer l'application, et l'ajouter à l'écran d'accueil de votre smartphone ou tablette
+```
+http://localhost/app/
+```
