@@ -2,29 +2,31 @@
 Never missed its transport.
 
 ## What is that ?
-Horarios est une web application basée sur Angular.js permettant d'afficher les prochains passage de son bus, tram, metro, etc.
-L'application est, pour l'instant, basé sur les flux de la Tan (Nantes). "Fork" pour d'autres API ;D
+Horarios is a web-based application AngularJS to display the next passage in his bus, tram, metro, etc.
+The application is, for now, based on the Tan's API (Nantes). Fork me, if you whant more services. :D
 
 ## How to install
 
 ### Requierements
 
-Horarios est basée sur Angular.js. Elle requière __NPM__ et __Compass__
+Horarios is based on AngularJS. It requires __NAME__ and __Compass__
 
 ### Installation
 
-Pour charger les libraries Angular et les dépendances placez-vous à la racine de l'application et lancer cette commande :
+To load the libraries and dependencies Angular launch this command in the root directory :
 ```
 npm install
 ```
 
-Pour charger les styles CSS via Compass, placez vous dans __app/__ et lancez :
+To load the CSS with Compass, place yourself in __app/__ and run:
 ```
 cd ./app/
 compass compile
 ```
 
-Vous pouvez alors lancer l'application, et l'ajouter à l'écran d'accueil de votre smartphone ou tablette
+You can then start the application, and add it to the home screen of your Smartphone or Tablet
 ```
 http://localhost/app/
 ```
+
+__Enjoy!__
