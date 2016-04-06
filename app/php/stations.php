@@ -9,7 +9,7 @@
 header('Content-type: text/plain');
 
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://open.tan.fr/ewp/arrets.json");
+curl_setopt($ch, CURLOPT_URL, "http://open.tan.fr/ewp/arrets.json");
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 

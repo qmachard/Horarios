@@ -13,7 +13,7 @@ if(	isset($_GET['station']) && !empty($_GET['station']) &&
 	isset($_GET['direction']) && !empty($_GET['direction'])) {
 
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://open.tan.fr/ewp/horairesarret.json/' . $_GET['station'] . '/' . $_GET['line'] . '/' . $_GET['direction']);
+	curl_setopt($ch, CURLOPT_URL, 'http://open.tan.fr/ewp/horairesarret.json/' . $_GET['station'] . '/' . $_GET['line'] . '/' . $_GET['direction']);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
